@@ -1,0 +1,38 @@
+# dependencies
+node_modules/
+
+# environment
+.env
+.env.*
+!.env.example
+
+# build
+dist/
+build/
+coverage/
+
+# python
+.venv/
+venv/
+__pycache__/
+
+# db temp files
+*.db-shm
+*.db-wal
+*.sqlite-shm
+*.sqlite-wal
+
+# reports / testing
+playwright-report/
+test-results/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
