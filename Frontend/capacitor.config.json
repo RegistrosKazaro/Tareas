@@ -1,0 +1,13 @@
+{
+  "appId": "com.kazaro.apptareas",
+  "appName": "AppTareas",
+  "webDir": "dist",
+  "server": {
+    "cleartext": true
+  },
+  "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    }
+  }
+}

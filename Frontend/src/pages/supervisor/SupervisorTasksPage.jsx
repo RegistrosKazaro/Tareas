@@ -12,8 +12,8 @@ import { fetchSupervisorServices } from "../../api/supervisorServices";
 
 const STATUSES = [
   { value: "", label: "Todas" },
-  { value: "PENDIENTE", label: "Pendientes" },
-  { value: "COMPLETADA", label: "Hechas" },
+  { value: "PENDING", label: "Pendientes" },
+  { value: "DONE", label: "Hechas" },
 ];
 
 function isISODate(d) {
@@ -314,7 +314,7 @@ export default function SupervisorTasksPage() {
               {visibleTasks.map((task) => {
                 const isDone = task.status === "DONE";
                 const canEdit = task.status === "PENDING";
-                const statusText = isDone ? "COMPLETADA" : "PENDIENTE";
+                const statusText = isDone ? "Completada" : "Pendiente";
 
                 return (
                   <div

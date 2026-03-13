@@ -112,7 +112,7 @@ router.post("/tasks", auth, requireRole(["SUPERVISOR"]), (req, res) => {
 });
 
 /**
- * GET /supervisor/tasks?from=YYYY-MM-DD&to=YYYY-MM-DD&operarioId=&status=PENDIENTE|COMPLETADA
+ * GET /supervisor/tasks?from=YYYY-MM-DD&to=YYYY-MM-DD&operarioId=&status=PENDING|DONE
  * lista tareas creadas por el supervisor
  */
 router.get("/tasks", auth, requireRole(["SUPERVISOR"]), (req, res) => {
@@ -137,11 +137,13 @@ router.get("/tasks", auth, requireRole(["SUPERVISOR"]), (req, res) => {
     params.push(operarioId);
   }
   if (status) {
-    const s = String(status).toUpperCase();
-    if (s !== "PENDIENTE" && s !== "COMPLETADA") return res.status(400).json({ error: "status inválido" });
-    filters.push("t.status = ?");
-    params.push(s);
+  const s = String(status).toUpperCase();
+  if (s !== "PENDING" && s !== "DONE") {
+    return res.status(400).json({ error: "status inválido" });
   }
+  filters.push("t.status = ?");
+  params.push(s);
+}
 
   const where = filters.length ? `WHERE ${filters.join(" AND ")}` : "";
 
@@ -168,7 +170,7 @@ router.get("/tasks", auth, requireRole(["SUPERVISOR"]), (req, res) => {
 /**
  * PATCH /supervisor/tasks/:id
  * body: { title?, description?, dueDate?, serviceId? }
- * Editar tarea (solo si aún está PENDIENTE)
+ * Editar tarea (solo si aún está PENDING)
  */
 router.patch("/tasks/:id", auth, requireRole(["SUPERVISOR"]), (req, res) => {
   const db = req.app.locals.db;

@@ -71,9 +71,7 @@ function seedAdminUser(db) {
     VALUES (?, 1, ?, ?, ?, 1, datetime('now'), datetime('now'))
   `).run(adminId, ADMIN_NAME, ADMIN_USERNAME, hash);
 
-  console.log("✔ Admin inicial creado:");
-  console.log(`   username: ${ADMIN_USERNAME}`);
-  console.log(`   password: ${ADMIN_PASSWORD}`);
+console.log("✔ Usuario administrador inicial creado");
 }
 
 // Init DB

@@ -5,8 +5,8 @@ import { fetchUsers } from "../../api/adminUsers";
 
 const STATUSES = [
   { value: "", label: "Todas" },
-  { value: "PENDIENTE", label: "Pendientes" },
-  { value: "COMPLETADA", label: "Hechas" },
+  { value: "PENDING", label: "Pendientes" },
+  { value: "DONE", label: "Hechas" },
 ];
 
 function isISODate(d) {
@@ -102,9 +102,9 @@ export default function TasksPage() {
   }, [tasks, q]);
 
   const pendingCount = useMemo(
-    () => tasks.filter((t) => String(t.status).toUpperCase() === "PENDIENTE").length,
-    [tasks]
-  );
+  () => tasks.filter((t) => String(t.status).toUpperCase() === "PENDING").length,
+  [tasks]
+);
 
   return (
     <div className="container">
@@ -266,7 +266,7 @@ export default function TasksPage() {
                 <tbody>
                   {visibleTasks.map((t) => {
                     const st = String(t.status || "").toUpperCase();
-                    const pending = st === "PENDIENTE";
+                    const pending = st === "PENDING";
 
                     return (
                       <tr key={t.id}>
@@ -299,7 +299,7 @@ export default function TasksPage() {
                               color: pending ? "var(--green-700)" : "var(--muted)",
                             }}
                           >
-                            {pending ? "PENDIENTE" : "HECHA"}
+                            {pending ? "Pendiente" : "Completada"}
                           </span>
                           
                         </td>
